@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 732
+  Left = 382
   Height = 472
-  Top = 209
+  Top = 154
   Width = 765
   BorderStyle = bsNone
   Caption = 'frmLogin'
@@ -10,6 +10,9 @@ object Form1: TForm1
   Font.Color = clWindowFrame
   Font.Height = -19
   Font.Name = 'Segoe UI Semibold'
+  KeyPreview = True
+  OnKeyPress = FormKeyPress
+  OnMouseMove = FormMouseMove
   Position = poDesktopCenter
   LCLVersion = '2.2.2.0'
   object BGRAShape1: TBGRAShape
@@ -40,6 +43,7 @@ object Form1: TForm1
     FillGradient.Point2YPercent = 100
     UseFillGradient = True
     Caption = 'BGRAShape1'
+    OnMouseMove = BGRAShape1MouseMove
   end
   object Label1: TLabel
     Cursor = crHandPoint
@@ -107,8 +111,9 @@ object Form1: TForm1
       Font.Name = 'Segoe UI Semibold'
       ParentColor = False
       ParentFont = False
+      OnMouseMove = edtUsernameMouseMove
     end
-    object Edit1: TEdit
+    object edtUsername: TEdit
       Left = 0
       Height = 25
       Top = 23
@@ -116,7 +121,10 @@ object Form1: TForm1
       Align = alTop
       BorderSpacing.Top = 3
       BorderStyle = bsNone
+      OnEnter = edtUsernameEnter
+      OnMouseMove = edtUsernameMouseMove
       TabOrder = 0
+      Text = 'Mustermann'
     end
   end
   object Panel2: TPanel
@@ -148,8 +156,9 @@ object Form1: TForm1
       Font.Name = 'Segoe UI Semibold'
       ParentColor = False
       ParentFont = False
+      OnMouseMove = edtUsernameMouseMove
     end
-    object Edit2: TEdit
+    object edtPasswort: TEdit
       Left = 0
       Height = 25
       Top = 23
@@ -158,6 +167,8 @@ object Form1: TForm1
       BorderSpacing.Top = 3
       BorderStyle = bsNone
       EchoMode = emPassword
+      OnEnter = edtUsernameEnter
+      OnMouseMove = edtUsernameMouseMove
       PasswordChar = '*'
       TabOrder = 0
     end
@@ -615,5 +626,18 @@ object Form1: TForm1
     StateDisabled.Color = 13421772
     StateDisabled.BorderColor = 12566463
     StateDisabled.BorderWidth = 1
+  end
+  object lblError: TLabel
+    Left = 424
+    Height = 20
+    Top = 352
+    Width = 217
+    Caption = 'Benutzername/Passwort ungültig'
+    Font.Color = clRed
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    ParentColor = False
+    ParentFont = False
+    Visible = False
   end
 end

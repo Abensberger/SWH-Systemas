@@ -18,8 +18,8 @@ type
     BGRAShape1: TBGRAShape;
     ColorSpeedButton1: TColorSpeedButton;
     ColorSpeedButton2: TColorSpeedButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    edtUsername: TEdit;
+    edtPasswort: TEdit;
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
@@ -29,13 +29,21 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    lblError: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
+    procedure BGRAShape1MouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
     procedure ColorSpeedButton1Click(Sender: TObject);
     procedure ColorSpeedButton2Click(Sender: TObject);
     procedure ColorSpeedButton2MouseLeave(Sender: TObject);
     procedure ColorSpeedButton2MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: Integer);
+    procedure edtUsernameEnter(Sender: TObject);
+    procedure edtUsernameMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure FormKeyPress(Sender: TObject; var Key: char);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure Label1Click(Sender: TObject);
   private
 
@@ -59,9 +67,21 @@ end;
 
 procedure TForm1.ColorSpeedButton1Click(Sender: TObject);
 begin
-  Self.Hide;
-  frmMain.ShowModal;
-  close
+  if (edtUsername.Text = 'Mustermann') and
+     (edtPasswort.Text = 'Max') then
+  begin
+    Self.Hide;
+    frmMain.ShowModal;
+    close;
+  end
+  else
+    lblError.Show;
+end;
+
+procedure TForm1.BGRAShape1MouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  lblError.Hide;
 end;
 
 procedure TForm1.ColorSpeedButton2Click(Sender: TObject);
@@ -78,6 +98,34 @@ procedure TForm1.ColorSpeedButton2MouseMove(Sender: TObject;
   Shift: TShiftState; X, Y: Integer);
 begin
   (Sender as TColorSpeedButton).Font.Color := clWhite;
+end;
+
+procedure TForm1.edtUsernameEnter(Sender: TObject);
+begin
+  lblError.Hide;
+end;
+
+procedure TForm1.edtUsernameMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  lblError.Hide;
+end;
+
+
+procedure TForm1.FormKeyPress(Sender: TObject; var Key: char);
+begin
+  lblError.Hide;
+  if Key = #13 then
+  begin
+    ColorSpeedButton1Click(Sender);
+    Key := #0;
+  end;
+end;
+
+procedure TForm1.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  lblError.Hide;
 end;
 
 end.
